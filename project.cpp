@@ -176,12 +176,37 @@ void removeBook(string book){ //Call to remove book from library
 void giveback(string book,string user){ //Call for updating Borrowed Books (Incomplete)
     ifstream fp("Borrowed_Books.txt");
     string line;
-
+    ofstream fp1("temp.txt");
     while(getline(fp,line)){
         Book b = createObj(line);
         if(b.bookname == book){
-            string user;
+            int pos = line.find_last_of(',');
+            string by = line.substr(pos+1,line.length()-pos);
+            if(user == by){
+                continue;
+            }
+            else{
+                fp1<<line<<'\n';
+            }
         }
+        else{
+            fp1<<line<<'\n';
+        }
+    }
+}
+
+void UsersBooks(string user){
+    ifstream fp("Borrowed_Books.txt");
+    string line;
+
+    while(getline(fp,line)){
+        Book b = createObj(line);
+        int pos = line.find_last_of(',');
+        string by = line.substr(pos+1,line.length()-pos);
+        if(user == by){
+            b.display();
+        }
+
     }
 }
 
@@ -249,5 +274,5 @@ int main(){
     //cin>>b;
 
 //    AddBook(b);
-    registerUser("ABC","ABC");
+    UsersBooks("Admin");
 }
