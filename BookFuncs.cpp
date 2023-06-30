@@ -1,33 +1,4 @@
-#include<iostream>
-#include<fstream>
-#include<cstdio>
-
-using namespace std;
-
-class Book{
-    public:
-        string bookname;
-        string author;
-        string genre;
-        int qty;
-
-        // Book(string name , string auth , string gen , int n){
-        //     bookname = name;
-        //     author = auth;
-        //     genre = gen;
-        //     qty = n;
-        // }
-
-        void display(){
-            cout<<"Name: "<<bookname<<"\t";
-            cout<<"Author: "<<author<<"\t";
-            cout<<"Genre: "<<genre<<"\t";
-            cout<<"Available Quantity: "<<qty<<endl;
-        }
-
-    friend istream &operator>>(istream &input , Book &b);
-};
-
+#include "BookFuncs.h"
 
 istream &operator>>(istream &input , Book &b){
     cout<<"Enter Book Name: ";
@@ -209,45 +180,4 @@ void returnBook(Book b){ //Call for updating Available Books;
     if(flag == 0){
         AddBook(b);
     }
-}
-
-
-
-void registerUser(string uid , string pass){
-    ofstream of;
-    of.open("Users.txt",ios::app);
-    of<<uid<<','<<pass<<'\n';
-    of.close();
-    cout<<"User Registered Successfully\n";
-}
-
-bool Authenticate(string uid , string passwd){
-    string line;
-    ifstream fp("Users.txt");
-    while(getline(fp,line)){
-        for(int i=0;i<line.length();i++){
-            if(line[i] == ','){
-                string name = line.substr(0,i);
-                if(name == uid){
-                    string pass = line.substr(i+1,line.length()-i-1);
-                    if(pass == passwd) return true;
-                }
-                else{
-                    break;
-                }
-            }
-        }
-    }
-    return false;
-}
-
-
-
-int main(){
-    
-    Book b;
-    //cin>>b;
-
-//    AddBook(b);
-    registerUser("ABC","ABC");
 }
