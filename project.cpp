@@ -139,6 +139,7 @@ void borrowBook(string book,string user){ //Call to borrow a book
         cout<<"Sorry,Book is Currently Unavailable\n";
     }
     else{
+        cout<<"Your Book has been issued\n";
         ofstream of;
         of.open("Borrowed_Books.txt",ios::app);
         of<<borrowed.bookname<<','<<borrowed.author<<','<<borrowed.genre<<','<<1<<','<<user<<'\n';
@@ -173,42 +174,6 @@ void removeBook(string book){ //Call to remove book from library
     rename(old_name,new_name);
 }
 
-void giveback(string book,string user){ //Call for updating Borrowed Books (Incomplete)
-    ifstream fp("Borrowed_Books.txt");
-    string line;
-    ofstream fp1("temp.txt");
-    while(getline(fp,line)){
-        Book b = createObj(line);
-        if(b.bookname == book){
-            int pos = line.find_last_of(',');
-            string by = line.substr(pos+1,line.length()-pos);
-            if(user == by){
-                continue;
-            }
-            else{
-                fp1<<line<<'\n';
-            }
-        }
-        else{
-            fp1<<line<<'\n';
-        }
-    }
-}
-
-void UsersBooks(string user){
-    ifstream fp("Borrowed_Books.txt");
-    string line;
-
-    while(getline(fp,line)){
-        Book b = createObj(line);
-        int pos = line.find_last_of(',');
-        string by = line.substr(pos+1,line.length()-pos);
-        if(user == by){
-            b.display();
-        }
-
-    }
-}
 
 void returnBook(Book b){ //Call for updating Available Books;
     string line;
@@ -223,22 +188,75 @@ void returnBook(Book b){ //Call for updating Available Books;
             b.qty++;
             flag = 1;
         }
-        else{
-            fp2<<b.bookname<<','<<b.author<<','<<b.genre<<','<<b.qty<<','<<'\n';
-        }
+        fp2<<b.bookname<<','<<b.author<<','<<b.genre<<','<<b.qty<<','<<'\n';
     }
     char new_name[] = "Available_Books.txt";
     char old_name[] = "temp.txt";
+    fp.close();
+    fp2.close();
     remove(new_name);
     rename(old_name,new_name);
     if(flag == 0){
+        
         AddBook(b);
     }
 }
 
 
+void giveback(string book,string user){ //Call for updating Borrowed Books 
+    ifstream fp("Borrowed_Books.txt");
+    string line;
+    int flag = 0;
+    Book toUpdate ;
+    ofstream fp1("temp.txt");
+    while(getline(fp,line)){
+        Book b = createObj(line);
+        if(b.bookname == book){
+            int pos = line.find_last_of(',');
+            string by = line.substr(pos+1,line.length()-pos);
+            if(user == by){
+                flag = 1;
+                toUpdate = b;
+            }
+            else{
+                fp1<<line<<'\n';
+            }
+        }
+        else{
+            fp1<<line<<'\n';
+        }
+    }
+    fp.close();
+    fp1.close();
+    char new_name[] = "Borrowed_Books.txt";
+    char old_name[] = "temp.txt";
+    remove(new_name);
+    rename(old_name,new_name);
+    if(flag!=0){
+        returnBook(toUpdate);
+    }
+}
 
-void registerUser(string uid , string pass){
+void UsersBooks(string user){// Display all the books borrowed by a user
+    ifstream fp("Borrowed_Books.txt");
+    string line;
+
+    while(getline(fp,line)){
+        Book b = createObj(line);
+        int pos = line.find_last_of(',');
+        string by = line.substr(pos+1,line.length()-pos);
+        if(user == by){
+            b.display();
+        }
+
+    }
+}
+
+
+
+
+
+void registerUser(string uid , string pass){//To Register new User
     ofstream of;
     of.open("Users.txt",ios::app);
     of<<uid<<','<<pass<<'\n';
@@ -246,7 +264,7 @@ void registerUser(string uid , string pass){
     cout<<"User Registered Successfully\n";
 }
 
-bool Authenticate(string uid , string passwd){
+bool Authenticate(string uid , string passwd){// To validate user
     string line;
     ifstream fp("Users.txt");
     while(getline(fp,line)){
@@ -270,9 +288,16 @@ bool Authenticate(string uid , string passwd){
 
 int main(){
     
-    Book b;
-    //cin>>b;
+    // Book b;
+    // cin>>b;
 
-//    AddBook(b);
-    UsersBooks("Admin");
+   //AddBook(b);
+   searchByGenre("Horror");
+   searchByName("ABC");
+   searchByAuthor("GREG");
+   cout<<Authenticate("ABC","ABC")<<endl;
+   //borrowBook("ABC","Admin");
+   UsersBooks("Admin");
+    removeBook("KKL");
+
 }
