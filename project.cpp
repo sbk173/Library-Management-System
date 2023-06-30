@@ -155,6 +155,7 @@ void AddBook(Book b){ //Call to add book to library
     of.open("Available_Books.txt",ios::app);
     of<<b.bookname<<','<<b.author<<','<<b.genre<<','<<b.qty<<','<<'\n';
     of.close();
+    cout<<"Book Successfully Added"<<endl;
 }
 
 void removeBook(string book){ //Call to remove book from library
@@ -175,6 +176,7 @@ void removeBook(string book){ //Call to remove book from library
     char old_name[] = "temp.txt";
     remove(new_name);
     rename(old_name,new_name);
+    cout<<"Book Successfully Removed"<<endl;
 }
 
 
@@ -203,6 +205,7 @@ void returnBook(Book b){ //Call for updating Available Books;
         
         AddBook(b);
     }
+    cout<<"Your Book has been returned"<<endl;
 }
 
 
