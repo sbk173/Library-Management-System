@@ -6,39 +6,84 @@ using namespace std;
 
 int main()
 {
-    UserManager A;
-    string uname;
-    string pwd;
-
-    A.registerUser("Hari","codecode");
-    
     cout<<"               "<<"WELCOME TO THE LIBRARY!"<<"             "<<endl;
 
-    cout<<"                  "<<"--Please Login --"<<"               "<<endl;
-    cout<<endl;
+    cout<<"               -- Actions: 1.Login 2.SignUp -- "<<endl;
+
+    int op;
 
     while(true)
     {
-        cout<<"Username: ";
-        
-        cin>>uname;
+        cout<<"Enter Option: ";
+        cin>>op;
 
-        cout<<"Password: ";
-        
-        cin>>pwd;
-
-        if( A.Authenticate(uname, pwd))
+        if(op == 1)
         {
-            cout<<endl;
-            cout<<"                  "<<"--Login Successful-- "<<endl;
+            Login();
             break;
+        } 
+        else if(op == 2)
+        {
+            SignUp();
+            break;
+        } 
+        else 
+        {
+            cout<<"Invalid Option. Try agian.";
+        }
+    }
+    cout<<endl<<endl;
+
+    //-----------------------------------------------------------------------------------------------
+    
+    while(true)
+    {
+          cout<<"Actions: \n1.Search Book \n2.Add Book \n3.Borrow Book \n9.Exit"<<endl;
+        cout<<"Option: ";
+        cin>>op;
+
+        if(op == 1)
+        {
+            string key;
+            cout<<"Enter key phrase: ";
+            cin>>key;
+            cout<<endl;
+
+            cout<<endl<<"Search Result:"<<endl;
+
+            search(key);
+        }
+        else if (op == 2)
+        {
+            Book temp;
+            cin>>temp;
+
+            AddBook(temp);
+
+            cout<<"                --Book added--"<<endl;
+        }
+        else if( op == 3)
+        {
+
+        }
+        else if( op == 9)
+        {
+            cout<<"                            --Goodbye--"<<endl;
+            exit(0);
         }
         else
         {
-            cout<<"Login failed. Try agian"<<endl;
-            cout<<endl;
-        }
+            cout<<"Invalid Option"<<endl;
+        }  
+
+        cout<<endl<<endl;
     }
+
+    
+
+
+
+
 
     
 

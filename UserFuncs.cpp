@@ -27,3 +27,58 @@ bool UserManager::Authenticate(string uid , string passwd){
     }
     return false;
 }
+
+void Login()
+{
+    UserManager A;
+    string uname;
+    string pwd;
+
+    cout<<"                  "<<"--Please Login --"<<"               "<<endl;
+    cout<<endl;
+
+     while(true)
+    {
+        cout<<"Username: ";
+        cin>>uname;
+
+        cout<<"Password: ";
+        cin>>pwd;
+
+        if( A.Authenticate(uname, pwd))
+        {
+            cout<<endl;
+            cout<<"                  "<<"--Login Successful-- "<<endl;
+            break;
+        }
+        else
+        {
+            cout<<"Login failed. Try agian"<<endl;
+            cout<<endl;
+        }
+    }
+
+}
+
+void SignUp()
+{
+    string uname;
+    string pwd;
+
+    cout<<"                  "<<"--Create New Login --"<<"               "<<endl;
+
+    cout<<"Create Username: ";
+    cin>>uname;
+
+    cout<<"Create password: ";
+    cin>>pwd;
+
+    cout<<endl;
+
+    UserManager A;
+    A.registerUser(uname,pwd);
+
+    cout<<"                  "<<"--SignUp Successful-- "<<endl;
+    
+
+}

@@ -34,6 +34,7 @@ istream &operator>>(istream & , Book &);
 Book createObj(string );
 
 void search(int  , string );
+void search(string);
 
 void searchByName(string );
 

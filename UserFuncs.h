@@ -13,3 +13,7 @@ class UserManager
 
     void registerUser(string  , string );
 };
+
+void Login();
+
+void SignUp();
