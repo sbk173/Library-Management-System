@@ -46,6 +46,9 @@ istream &operator>>(istream &input , Book &b){
     return input;
 }
 
+string admin_uid = "Admin";
+string admin_pass = "Admin";
+
 Book createObj(string line){ // Helper to create book object from comma separated values
     Book book;
     int index = 0;
