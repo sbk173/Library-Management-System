@@ -16,4 +16,4 @@ class UserManager
 
 string Login();
 
-void SignUp();
+string SignUp();

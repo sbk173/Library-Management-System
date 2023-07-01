@@ -27,7 +27,7 @@ int main()
         } 
         else if(op == 2)
         {
-            SignUp();
+            currentUser = SignUp();
             break;
         } 
         else 
@@ -41,7 +41,7 @@ int main()
     
     while(true)
     {   
-        cout<<"Actions: \n1.Search Book \n2.Add Book \n3.Borrow Book \n4.Return Book \n9.Exit"<<endl;
+        cout<<"Actions: \n1.Search Book \n2.Add Book \n3.Borrow Book \n4.Return Book \n5.View Borrowed Books \n9.Exit"<<endl;
         cout<<"Option: ";
         cin>>op;
 
@@ -79,7 +79,6 @@ int main()
 
             borrowBook(temp, currentUser);
 
-            cout<<"                               --Borrow Successful--";
         }
         else if(op == 4){
             system("clear");
@@ -89,6 +88,12 @@ int main()
             cin>>book;
             giveback(book, currentUser);
             cout<<"                                --Return Successful--";
+        }
+        else if(op ==5){
+            system("clear");
+            cout<<"                               Currently Borrowed Books"<<endl<<endl;
+            UsersBooks(currentUser);
+            cout<<endl;
         }
         else if( op == 9)
         {

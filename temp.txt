@@ -1,4 +1,0 @@
-ABC,DEF,Horror,1,
-123,231,Horror,22,
-555,212,Horrolr,22,
-NEW,GREG,ACTION,33,

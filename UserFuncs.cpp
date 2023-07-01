@@ -60,7 +60,7 @@ string Login()
 
 }
 
-void SignUp()
+string SignUp()
 {
     string uname;
     string pwd;
@@ -79,6 +79,7 @@ void SignUp()
     A.registerUser(uname,pwd);
 
     cout<<"                  "<<"--SignUp Successful-- "<<endl;
+    return uname;
     
 
 }

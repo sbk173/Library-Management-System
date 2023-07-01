@@ -131,7 +131,6 @@ void borrowBook(string book,string user){ //Call to borrow a book
     char new_name[] = "Available_Books.txt";
     char old_name[] = "temp.txt";
     int res = remove(new_name);
-    cout<<res;
 
     rename(old_name,new_name);
 
@@ -142,6 +141,8 @@ void borrowBook(string book,string user){ //Call to borrow a book
         ofstream of;
         of.open("Borrowed_Books.txt",ios::app);
         of<<borrowed.bookname<<','<<borrowed.author<<','<<borrowed.genre<<','<<1<<','<<user<<'\n';
+
+        cout<<"                               --Borrow Successful--";
     }
 
 }
@@ -229,5 +230,20 @@ void returnBook(Book b){ //Call for updating Available Books;
     rename(old_name,new_name);
     if(flag == 0){
         AddBook(b);
+    }
+}
+
+void UsersBooks(string user){// Display all the books borrowed by a user
+    ifstream fp("Borrowed_Books.txt");
+    string line;
+
+    while(getline(fp,line)){
+        Book b = createObj(line);
+        int pos = line.find_last_of(',');
+        string by = line.substr(pos+1,line.length()-pos);
+        if(user == by){
+            b.display();
+        }
+
     }
 }

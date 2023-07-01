@@ -23,7 +23,7 @@ class Book{
             cout<<"Name: "<<bookname<<"\t";
             cout<<"Author: "<<author<<"\t";
             cout<<"Genre: "<<genre<<"\t";
-            cout<<"Available Quantity: "<<qty<<endl;
+            cout<<"Quantity: "<<qty<<endl;
         }
 
     friend istream &operator>>(istream &input , Book &b);
@@ -54,5 +54,5 @@ void giveback(string ,string );
 
 void returnBook(Book );
 
-
+void UsersBooks(string);
 
