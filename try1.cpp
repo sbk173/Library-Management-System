@@ -15,26 +15,26 @@ int main()
 
     int op;
 
-    // while(true)
-    // {
-    //     cout<<"Enter Option: ";
-    //     cin>>op;
+    while(true)
+    {
+        cout<<"Enter Option: ";
+        cin>>op;
 
-    //     if(op == 1)
-    //     {
-    //         currentUser= Login();
-    //         break;
-    //     } 
-    //     else if(op == 2)
-    //     {
-    //         SignUp();
-    //         break;
-    //     } 
-    //     else 
-    //     {
-    //         cout<<"Invalid Option. Try agian.";
-    //     }
-    // }
+        if(op == 1)
+        {
+            currentUser= Login();
+            break;
+        } 
+        else if(op == 2)
+        {
+            SignUp();
+            break;
+        } 
+        else 
+        {
+            cout<<"Invalid Option. Try agian.";
+        }
+    }
     cout<<endl<<endl;
 
     //-----------------------------------------------------------------------------------------------
@@ -48,6 +48,7 @@ int main()
         if(op == 1)
         {   
             system("clear");
+            cout<<endl<< "                           --Book Search--"<<endl;
             string key;
             cout<<"Enter key phrase: ";
             cin>>key;
@@ -60,6 +61,7 @@ int main()
         else if (op == 2)
         {
             system("clear");
+            cout<<endl<< "                           --Add Book--"<<endl;
             Book temp;
             cin>>temp;
 
@@ -70,21 +72,23 @@ int main()
         else if( op == 3)
         {
             system("clear");
+            cout<<endl<< "                           --Borrow Book--"<<endl;
             cout<<"Enter Book Name"<<endl;
             string temp;
             cin>>temp;
 
             borrowBook(temp, currentUser);
 
-
-
+            cout<<"                               --Borrow Successful--";
         }
         else if(op == 4){
             system("clear");
+            cout<<endl<< "                           --Return Book--"<<endl;
             string book;
             cout<<"Enter Book To Return"<<endl;
             cin>>book;
             giveback(book, currentUser);
+            cout<<"                                --Return Successful--";
         }
         else if( op == 9)
         {
