@@ -2,6 +2,7 @@
 #include "BookFuncs.h"
 
 #include <iostream>
+
 using namespace std;
 
 string currentUser = "Hari";
@@ -39,13 +40,14 @@ int main()
     //-----------------------------------------------------------------------------------------------
     
     while(true)
-    {
-          cout<<"Actions: \n1.Search Book \n2.Add Book \n3.Borrow Book \n9.Exit"<<endl;
+    {   
+        cout<<"Actions: \n1.Search Book \n2.Add Book \n3.Borrow Book \n4.Return Book \n9.Exit"<<endl;
         cout<<"Option: ";
         cin>>op;
 
         if(op == 1)
-        {
+        {   
+            system("clear");
             string key;
             cout<<"Enter key phrase: ";
             cin>>key;
@@ -57,6 +59,7 @@ int main()
         }
         else if (op == 2)
         {
+            system("clear");
             Book temp;
             cin>>temp;
 
@@ -66,6 +69,7 @@ int main()
         }
         else if( op == 3)
         {
+            system("clear");
             cout<<"Enter Book Name"<<endl;
             string temp;
             cin>>temp;
@@ -74,6 +78,13 @@ int main()
 
 
 
+        }
+        else if(op == 4){
+            system("clear");
+            string book;
+            cout<<"Enter Book To Return"<<endl;
+            cin>>book;
+            giveback(book, currentUser);
         }
         else if( op == 9)
         {
@@ -105,6 +116,8 @@ int main()
 
 
     //Ending space:
-    for(int i =0; i<5;i++) cout<<endl;
+    //for(int i =0; i<5;i++) cout<<endl;
+
+    system("clear");
 }
 

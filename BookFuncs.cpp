@@ -173,17 +173,40 @@ void removeBook(string book){ //Call to remove book from library
     rename(old_name,new_name);
 }
 
-void giveback(string book,string user){ //Call for updating Borrowed Books (Incomplete)
+void giveback(string book,string user){ //Call for updating Borrowed Books 
     ifstream fp("Borrowed_Books.txt");
     string line;
-
+    int flag = 0;
+    Book toUpdate ;
+    ofstream fp1("temp.txt");
     while(getline(fp,line)){
         Book b = createObj(line);
         if(b.bookname == book){
-            string user;
+            int pos = line.find_last_of(',');
+            string by = line.substr(pos+1,line.length()-pos);
+            if(user == by){
+                flag = 1;
+                toUpdate = b;
+            }
+            else{
+                fp1<<line<<'\n';
+            }
+        }
+        else{
+            fp1<<line<<'\n';
         }
     }
+    fp.close();
+    fp1.close();
+    char new_name[] = "Borrowed_Books.txt";
+    char old_name[] = "temp.txt";
+    remove(new_name);
+    rename(old_name,new_name);
+    if(flag!=0){
+        returnBook(toUpdate);
+    }
 }
+
 
 void returnBook(Book b){ //Call for updating Available Books;
     string line;
@@ -198,9 +221,7 @@ void returnBook(Book b){ //Call for updating Available Books;
             b.qty++;
             flag = 1;
         }
-        else{
-            fp2<<b.bookname<<','<<b.author<<','<<b.genre<<','<<b.qty<<','<<'\n';
-        }
+        fp2<<b.bookname<<','<<b.author<<','<<b.genre<<','<<b.qty<<','<<'\n';
     }
     char new_name[] = "Available_Books.txt";
     char old_name[] = "temp.txt";
