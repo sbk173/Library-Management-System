@@ -28,7 +28,13 @@ int main()
         else if(op == 2)
         {
             currentUser = SignUp();
-            break;
+            if(currentUser == "-1"){
+                cout<<"User Already Exists. Try Again"<<endl;
+            }
+            else{
+                break;
+            }
+            
         } 
         else 
         {

@@ -28,6 +28,26 @@ bool UserManager::Authenticate(string uid , string passwd){
     return false;
 }
 
+bool existingUser(string uid){
+    string line;
+    ifstream fp("Users.txt");
+    while(getline(fp,line)){
+        for(int i=0;i<line.length();i++){
+            if(line[i] == ','){
+                string name = line.substr(0,i);
+                if(name == uid){
+                    return true;
+                }
+                else{
+                    break;
+                }
+            }
+        }
+    }
+    return false;
+
+}
+
 string Login()
 {
     UserManager A;
@@ -74,12 +94,17 @@ string SignUp()
     cin>>pwd;
 
     cout<<endl;
+    if(existingUser(uname) == false){
+        UserManager A;
+        A.registerUser(uname,pwd);
 
-    UserManager A;
-    A.registerUser(uname,pwd);
-
-    cout<<"                  "<<"--SignUp Successful-- "<<endl;
-    return uname;
+        cout<<"                  "<<"--SignUp Successful-- "<<endl;
+        return uname;
+    }
+    else{
+        return "-1";
+    }
+    
     
 
 }
