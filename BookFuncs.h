@@ -27,9 +27,11 @@ class Book{
         }
 
     friend istream &operator>>(istream &input , Book &b);
+    friend void getline1(istream &input , string &target);
 };
 
 istream &operator>>(istream & , Book &);
+void getline1(istream &input , string &target);
 
 Book createObj(string );
 

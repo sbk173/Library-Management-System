@@ -4,6 +4,8 @@
 #include <iostream>
 using namespace std;
 
+string currentUser = "Hari";
+
 int main()
 {
     cout<<"               "<<"WELCOME TO THE LIBRARY!"<<"             "<<endl;
@@ -12,26 +14,26 @@ int main()
 
     int op;
 
-    while(true)
-    {
-        cout<<"Enter Option: ";
-        cin>>op;
+    // while(true)
+    // {
+    //     cout<<"Enter Option: ";
+    //     cin>>op;
 
-        if(op == 1)
-        {
-            Login();
-            break;
-        } 
-        else if(op == 2)
-        {
-            SignUp();
-            break;
-        } 
-        else 
-        {
-            cout<<"Invalid Option. Try agian.";
-        }
-    }
+    //     if(op == 1)
+    //     {
+    //         currentUser= Login();
+    //         break;
+    //     } 
+    //     else if(op == 2)
+    //     {
+    //         SignUp();
+    //         break;
+    //     } 
+    //     else 
+    //     {
+    //         cout<<"Invalid Option. Try agian.";
+    //     }
+    // }
     cout<<endl<<endl;
 
     //-----------------------------------------------------------------------------------------------
@@ -60,10 +62,17 @@ int main()
 
             AddBook(temp);
 
-            cout<<"                --Book added--"<<endl;
+            cout<<endl<<"                --Book added--"<<endl;
         }
         else if( op == 3)
         {
+            cout<<"Enter Book Name"<<endl;
+            string temp;
+            cin>>temp;
+
+            borrowBook(temp, currentUser);
+
+
 
         }
         else if( op == 9)

@@ -14,6 +14,6 @@ class UserManager
     void registerUser(string  , string );
 };
 
-void Login();
+string Login();
 
 void SignUp();

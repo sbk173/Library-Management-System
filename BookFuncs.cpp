@@ -17,6 +17,17 @@ istream &operator>>(istream &input , Book &b){
     return input;
 }
 
+void getline1(istream &input , string &target){
+    string temp;
+    char ch;
+
+    while(input.peek() !='\n'){
+        input.get(ch);
+        temp+=ch;
+    }
+    target = temp;
+}
+
 Book createObj(string line){ // Helper to create book object from comma separated values
     Book book;
     int index = 0;
@@ -115,13 +126,13 @@ void borrowBook(string book,string user){ //Call to borrow a book
                 continue;
             }
         }
-        else{
-            fp2<<b.bookname<<','<<b.author<<','<<b.genre<<','<<b.qty<<','<<'\n';
-        }
+        fp2<<b.bookname<<','<<b.author<<','<<b.genre<<','<<b.qty<<','<<'\n';
     }
     char new_name[] = "Available_Books.txt";
     char old_name[] = "temp.txt";
-    remove(new_name);
+    int res = remove(new_name);
+    cout<<res;
+
     rename(old_name,new_name);
 
     if(found ==0){

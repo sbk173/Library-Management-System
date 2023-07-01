@@ -28,7 +28,7 @@ bool UserManager::Authenticate(string uid , string passwd){
     return false;
 }
 
-void Login()
+string Login()
 {
     UserManager A;
     string uname;
@@ -49,7 +49,7 @@ void Login()
         {
             cout<<endl;
             cout<<"                  "<<"--Login Successful-- "<<endl;
-            break;
+            return uname;
         }
         else
         {
